@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/22ricky/react-scaffold#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "webpack": "^3.12.0"
   }
 }
