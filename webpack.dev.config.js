@@ -1,8 +1,12 @@
 const path = require( 'path' );
+const webpack = require( 'webpack' );
 
 module.exports = {
   // 入口
-  entry: path.join( __dirname, 'src/index.js' ),
+  entry: [
+    'react-hot-loader/patch',
+    path.join( __dirname, 'src/index.js' )
+  ],
   // 输出到 dist 文件夹，输出文件名字为 bundle.js
   output: {
     path: path.join( __dirname, './dist' ),
@@ -22,6 +26,10 @@ module.exports = {
     historyApiFallback: true,
     // 服务器外部可访问 https://webpack.docschina.org/configuration/dev-server
     // host: '0.0.0.0',
+    hot: true,
     port: 8080
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
