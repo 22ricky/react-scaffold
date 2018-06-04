@@ -31,5 +31,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+  resolve: {
+    alias: {
+      pages: path.join( __dirname, 'src/pages' ),
+      component: path.join( __dirname, 'src/component' ),
+      router: path.join( __dirname, 'src/router' )
+    }
+  }
 };
