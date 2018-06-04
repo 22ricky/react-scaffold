@@ -16,5 +16,12 @@ module.exports = {
       use: ['babel-loader?cacheDirectory=true'],
       include: path.join( __dirname, 'src' )
     }]
+  },
+  devServer: {
+    contentBase: path.join( __dirname, './dist' ),
+    historyApiFallback: true,
+    // 服务器外部可访问 https://webpack.docschina.org/configuration/dev-server
+    // host: '0.0.0.0',
+    port: 8080
   }
 };
