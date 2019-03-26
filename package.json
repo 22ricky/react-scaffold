@@ -1,6 +1,6 @@
 {
-  "name": "react-scaffold",
-  "version": "1.0.0",
+  "name": "@ricky22/react-scaffold",
+  "version": "0.0.0",
   "description": "A React Scaffold",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,14 @@
     "url": "https://github.com/22ricky/react-scaffold/issues"
   },
   "homepage": "https://github.com/22ricky/react-scaffold#readme",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -31,13 +39,5 @@
     "react-hot-loader": "^4.0.0",
     "webpack": "^3.12.0",
     "webpack-dev-server": "^2.11.2"
-  },
-  "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
   }
 }
