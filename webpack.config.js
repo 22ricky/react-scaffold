@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -52,7 +53,8 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
-    })
+    }),
+    new CleanWebpackPlugin(['dist'])
   ],
   resolve: {
     alias: {
