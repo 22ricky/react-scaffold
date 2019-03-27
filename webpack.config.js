@@ -12,6 +12,7 @@ module.exports = {
     vendor: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'redux']
   },
   output: {
+    publicPath: '/',
     path: path.join( __dirname, './dist' ),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js'
