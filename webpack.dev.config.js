@@ -5,10 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'inline-source-map',
   // 入口
-  entry: [
-    'react-hot-loader/patch',
-    path.join( __dirname, 'src/index.js' )
-  ],
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      path.join( __dirname, 'src/index.js' )
+    ],
+    vendor: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'redux']
+  },
   // 输出到 dist 文件夹，输出文件名字为 bundle.js
   output: {
     path: path.join( __dirname, './dist' ),
@@ -48,6 +51,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join( __dirname, 'src/index.html' )
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
     })
   ],
   resolve: {
