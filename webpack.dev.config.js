@@ -1,41 +1,25 @@
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 
-module.exports = {
+const commonConfig = require('./webpack.common.config');
+
+const devConfig = {
   devtool: 'inline-source-map',
-  // 入口
   entry: {
     app: [
       'react-hot-loader/patch',
       path.join( __dirname, 'src/index.js' )
-    ],
-    vendor: ['react', 'react-dom', 'react-redux', 'react-router-dom', 'redux']
+    ]
   },
-  // 输出到 dist 文件夹，输出文件名字为 bundle.js
   output: {
-    path: path.join( __dirname, './dist' ),
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[chunkhash].js'
+    /*这里本来应该是[chunkhash]的，但是由于[chunkhash]和raect-hot-loader不兼容。只能妥协*/
+    filename: '[name].[hash].js'
   },
-  // src 文件夹下面的以 .js 结尾的文件，要使用 babel 解析
-  // cacheDirectory 是用来缓存编译的结果，下次编译加速
   module: {
     rules: [{
-      test: /\.js$/,
-      use: ['babel-loader?cacheDirectory=true'],
-      include: path.join( __dirname, 'src' )
-    }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
-    }, {
-      test: /\.(png|jpg|gif)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192
-        }
-      }]
     }]
   },
   devServer: {
@@ -47,22 +31,16 @@ module.exports = {
     port: 8080
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.join( __dirname, 'src/index.html' )
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    })
-  ],
-  resolve: {
-    alias: {
-      pages: path.join( __dirname, 'src/pages' ),
-      component: path.join( __dirname, 'src/component' ),
-      router: path.join( __dirname, 'src/router' ),
-      actions: path.join( __dirname, 'src/redux/actions' ),
-      reducers: path.join( __dirname, 'src/redux/reducers' )
-    }
-  }
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
+
+module.exports = merge({
+  customizeArray(a, b, key) {
+    /*entry.app不合并，全替换*/
+    if (key === 'entry.app') {
+      return b;
+    }
+    return undefined;
+  }
+})(commonConfig, devConfig);
