@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -25,7 +26,10 @@ module.exports = {
       include: path.join( __dirname, 'src' )
     }, {
       test: /\.css$/,
-      use: ['style-loader', 'css-loader']
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader'
+      })
     }, {
       test: /\.(png|jpg|gif)$/,
       use: [{
@@ -54,7 +58,11 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
     }),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash:5].css',
+      allChunks: true
+    })
   ],
   resolve: {
     alias: {
