@@ -13,7 +13,7 @@ export default store => next => action => {
 
   /*没有promise，证明不是想要发送ajax请求的，直接进入下一步*/
   if (!promise) {
-    next(action);
+    return next(action);
   }
 
   /*解析type*/
