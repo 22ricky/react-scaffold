@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     app: [
+      'babel-polyfill',
       path.join( __dirname, 'src/index.js' )
     ],
     vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux']
