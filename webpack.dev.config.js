@@ -29,13 +29,13 @@ const devConfig = {
     // 服务器外部可访问 https://webpack.docschina.org/configuration/dev-server
     // host: '0.0.0.0',
     hot: true,
-    port: 8080
+    port: 8080,
+    proxy: {
+      '/api/*': 'http://localhost:8090/$1'
+    }
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      MOCK: true
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
 
