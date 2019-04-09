@@ -39,7 +39,7 @@ export function getUserInfo() {
   // }
 
   return {
-    promise: client => client.get('http://localhost:8080/api/user.json'),
+    promise: client => client.get('/api/user'),
     type: [GET_USER_INFO_REQUEST, GET_USER_INFO_SUCCESS, GET_USER_INFO_FAIL]
   };
 }

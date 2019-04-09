@@ -6,6 +6,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import store from './redux/store';
 import App from 'components/App/App';
 
+if (MOCK) {
+  require('mock/mock');
+}
+
 // 初始化
 renderWithHotReload(App);
 

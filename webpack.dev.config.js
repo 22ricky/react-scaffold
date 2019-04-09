@@ -32,7 +32,10 @@ const devConfig = {
     port: 8080
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      MOCK: true
+    })
   ]
 };
 
