@@ -1,6 +1,6 @@
 {
   "name": "@ricky22/react-scaffold",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A React Scaffold",
   "main": "index.js",
   "scripts": {
